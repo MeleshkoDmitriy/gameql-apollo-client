@@ -1,0 +1,1 @@
+export const BASE_URL: string = 'https://gameql-apollo-server-ooas.vercel.app';
