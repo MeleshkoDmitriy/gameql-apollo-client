@@ -1,25 +1,7 @@
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { GET_USERS } from "./apollo/query";
 
-// const GET_GAMES = gql`
-//   query Games {
-//     games {
-//       title
-//       id
-//       description
-//       image
-//     }
-//   }
-// `;
 
-const GET_USERS = gql`
-  query Users {
-    users {
-      id
-      username
-      avatar
-    }
-  }
-`;
 
 function App() {
   // const { loading, error, data } = useQuery(GET_GAMES);
@@ -43,16 +25,7 @@ function App() {
           <img src={game.image} alt="image" />
         </div>
       ))} */}
-      {data.users.map((user) => (
-        <div key={user.id}>
-          <strong>{user.username}</strong>
-          <img
-            src={user.avatar}
-            alt="avatar"
-            style={{ width: "50px", aspectRatio: "1 / 1" }}
-          />
-        </div>
-      ))}
+
     </div>
   );
 }
