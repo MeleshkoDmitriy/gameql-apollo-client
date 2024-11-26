@@ -30,7 +30,7 @@ export const ReviewForm: FC<ReviewFormProps> = ({ gameId, userId }) => {
       { query: GET_USER_BY_ID, variables: { id: userId } }, 
     ],
   });
-  
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
