@@ -11,9 +11,9 @@ interface LayoutProps {
 export const Layout: FC<LayoutProps> = ({ children }) => {
   const contentClasses = clsx("container", styles.content);
   return (
-    <>
+    <div className={styles.wrapper}>
       <Header />
       <main className={contentClasses}>{children}</main>
-    </>
+    </div>
   );
 };

@@ -2,6 +2,8 @@ import { FC } from "react";
 import { TGame } from "../../../types/types";
 import { Link } from "react-router-dom";
 import { routes } from "../../../routes/routes";
+import styles from "./GameCard.module.styl";
+import { GenresList } from "../../lists/GenresList/GenresList";
 
 interface GameCardProps {
   game: TGame;
@@ -9,18 +11,20 @@ interface GameCardProps {
 
 export const GameCard: FC<GameCardProps> = ({ game }) => {
   return (
-    <Link to={`${routes.GAMES}/${game.id}`} key={game.id}>
-      <div>
-        <img
-          src={game.image}
-          alt={game.title}
-          style={{ width: "200px", height: "auto" }}
-        />
-        <h2>{game.title}</h2>
-        <p>{game.price}</p>
-        {game.genres.map((g, i) => (
-          <span key={i}>{g}</span>
-        ))}
+    <Link className={styles.card} to={`${routes.GAMES}/${game.id}`}>
+      <div className={styles.cardWrapper}>
+        <div className={styles.cardWrapperPicture}>
+          <img
+            className={styles.cardWrapperPictureImage}
+            src={game.image}
+            alt={game.title}
+          />
+        </div>
+        <h2 className={styles.cardWrapperTitle}>{game.title}</h2>
+        <p className={styles.cardWrapperPrice}>
+          {game.price === 0 ? "Free to Play" : `${game.price} $`}
+        </p>
+        <GenresList list={game.genres} />
       </div>
     </Link>
   );

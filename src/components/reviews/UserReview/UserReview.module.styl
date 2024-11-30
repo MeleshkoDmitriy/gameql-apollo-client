@@ -1,0 +1,26 @@
+@import '../../../styles/index.styl';
+
+.review
+  background-color colors.darkGrey
+  border-radius radiuses.large
+  border 2px solid colors.lightGrey
+  padding 20px
+  width 100%
+  display flex
+  gap 20px
+  align-items flex-start
+  &Avatar
+    border 2px solid colors.lightGrey
+    width 100px
+    aspect-ratio 1 / 1
+    border-radius 50%
+    overflow hidden
+    &Image
+      object-fit cover
+      width 100%
+      height auto
+  &Info
+    width 100%
+    &Name
+      margin 0
+      font-size fonts.large

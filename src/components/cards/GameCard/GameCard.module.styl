@@ -1,0 +1,33 @@
+@import '../../../styles/index.styl';
+
+
+.card 
+  border-radius radiuses.medium
+  backgroundMixin()
+  width 100%
+  padding 10px
+
+  &Wrapper
+    display flex
+    flex-direction column
+    gap 10px
+    &Picture
+      overflow hidden
+      border-radius radiuses.medium;
+      &Image
+        transition transitions.fast
+        border-radius radiuses.medium
+        width 100%
+        height auto
+        object-fit cover
+        &:hover
+          transform scale(1.1)
+    &Title
+      transition transitions.fast
+      font-size fonts.large
+      font-weight 700
+      height 10px
+
+    &Price
+      transition transitions.fast
+      font-size fonts.medium

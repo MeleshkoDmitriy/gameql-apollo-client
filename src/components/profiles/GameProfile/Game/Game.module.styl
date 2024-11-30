@@ -1,0 +1,35 @@
+@import '../../../../styles/index.styl';
+
+  .game
+    width 100%
+    display flex
+    gap 20px
+
+    &Picture,
+    &Info 
+      flex-basis 50%
+
+    &Picture
+      border-radius radiuses.medium;
+      width 100%
+      overflow hidden
+      &Image
+        object-fit cover
+        width 100%
+        height auto
+
+    &Info
+      display flex
+      flex-direction column
+      gap 20px
+      &Title
+        font-size 30px
+      &Desc,
+      &Rating
+        font-size fonts.medium
+        margin 0
+        text-align justify
+      &Rating
+        text-transform uppercase
+
+        

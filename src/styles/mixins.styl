@@ -6,3 +6,11 @@ activeLink(isActive)
   else 
     color colors.white
     background-color colors.darkGrey
+
+backgroundMixin()
+  transition transitions.fast
+  background-color colors.darkGrey;
+  &:hover
+    background-color colors.lightGrey;
+    & p, & h2
+      color colors.black;

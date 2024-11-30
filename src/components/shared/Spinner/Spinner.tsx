@@ -1,16 +1,17 @@
+import styles from './Spinner.module.styl'
+
 export const Spinner = () => {
   return (
     <svg
-      width={30}
-      height={30}
+      className={styles.spinner}
       viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
     >
       <circle
+        className={styles.spinnerCircle}
         cx="50"
         cy="50"
         r="45"
-        stroke="blue"
         strokeWidth="5"
         fill="none"
         strokeLinecap="round"
