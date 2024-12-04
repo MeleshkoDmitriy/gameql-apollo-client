@@ -3,6 +3,8 @@ import { useMutation } from "@apollo/client";
 import { ADD_REVIEW } from "../../../apollo/mutation";
 import { GET_GAME_BY_ID } from "../../../apollo/query";
 import { GET_USER_BY_ID } from "../../../apollo/query";
+import styles from "./ReviewForm.module.styl";
+import { RatingForm } from "../../shared/Rating/RatingForm/RatingForm";
 
 interface ReviewFormProps {
   gameId: string;
@@ -19,18 +21,15 @@ export const ReviewForm: FC<ReviewFormProps> = ({ gameId, userId }) => {
         query: GET_GAME_BY_ID,
         variables: { id: gameId },
       });
-      
+
       cache.writeQuery({
         query: GET_GAME_BY_ID,
         variables: { id: gameId },
         data: { game: { ...game, reviews: [...game.reviews, addReview] } },
       });
     },
-    refetchQueries: [
-      { query: GET_USER_BY_ID, variables: { id: userId } }, 
-    ],
+    refetchQueries: [{ query: GET_USER_BY_ID, variables: { id: userId } }],
   });
-
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -52,22 +51,20 @@ export const ReviewForm: FC<ReviewFormProps> = ({ gameId, userId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <textarea
+        className={styles.formTextarea}
         placeholder="Review Title"
         value={reviewContent}
         onChange={(e) => setReviewContent(e.target.value)}
+        required
       />
-      <input
-        type="number"
-        placeholder="Rating (1-5)"
-        min="1"
-        max="5"
-        value={reviewRating}
-        onChange={(e) => setReviewRating(Number(e.target.value))}
-      />
-      <button type="submit">Submit</button>
+      <div className={styles.formGroup}>
+        <RatingForm rating={reviewRating} onRatingChange={setReviewRating} />
+        <button type="submit" className={styles.formGroupButton}>
+          Submit
+        </button>
+      </div>
     </form>
   );
 };

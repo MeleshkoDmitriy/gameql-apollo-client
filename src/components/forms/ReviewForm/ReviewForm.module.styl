@@ -1,0 +1,39 @@
+@import '../../../styles/index.styl';
+
+.form 
+  width 100%
+  padding 20px
+  background-color colors.lightGrey
+  border-radius radiuses.large;
+  display flex
+  flex-direction column
+  gap 20px
+
+  &Textarea
+    width 100%
+    height 100px
+    padding 10px
+    border-radius radiuses.medium
+    color colors.black
+    font-size 18px
+    resize none
+    outline none
+
+  &Group
+    display flex
+    justify-content space-between
+    align-items center
+
+    &Button
+      padding 10px 20px
+      border-radius radiuses.medium
+      background-color colors.darkGrey
+      color colors.white
+      font-size 18px
+      border 2px solid transparent
+      transition transitions.fast;
+      cursor pointer
+
+      &:hover
+        background-color colors.white
+        color colors.darkGrey

@@ -3,13 +3,15 @@ import { TReview } from "../../../types/types";
 import { routes } from "../../../routes/routes";
 import { Link } from "react-router-dom";
 import styles from "./UserReview.module.styl";
-import { MdOutlineVerified } from "react-icons/md";
+import { RatingReview } from "../../shared/Rating/RatingReview/RatingReview";
+import { Verified } from "../../shared/Verified/Verified";
 
 interface UserReviewProps {
   review: TReview;
 }
 
 export const UserReview: FC<UserReviewProps> = ({ review }) => {
+  console.log(review)
   return (
     <div className={styles.review} key={review.id}>
       <div className={styles.reviewAvatar}>
@@ -24,12 +26,10 @@ export const UserReview: FC<UserReviewProps> = ({ review }) => {
           <Link to={`${routes.USERS}/${review.user.id}`}>
             {review.user.username}
           </Link>
-          <span>{review.user.isVerified ? <MdOutlineVerified /> : null}</span>
-          <span>{review.user.isVerified}</span>
-
+          <Verified isVerified={review.user.isVerified} />
         </h5>
         <p className={styles.reviewInfoContent}>{review.content}</p>
-        <p className={styles.reviewInfoRating}>{review.rating}</p>
+        <RatingReview rating={review.rating} />
       </div>
     </div>
   );

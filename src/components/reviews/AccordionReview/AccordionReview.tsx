@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { TReview } from "../../../types/types";
-import { Link } from "react-router-dom";
-import { routes } from "../../../routes/routes";
+import { FieldsetReview } from "./FieldsetReview/FieldsetReview";
+import styles from "./AccordionReview.module.styl";
 
 interface AccordionReviewProps {
   reviews: TReview[];
@@ -9,19 +9,18 @@ interface AccordionReviewProps {
 
 export const AccordionReview: FC<AccordionReviewProps> = ({ reviews }) => {
   return (
-    <div>
-      {reviews
-      .slice()
-      .reverse()
-      .map((review) => (
-        <Link to={`${routes.GAMES}/${review.game.id}`} key={review.id}>
-          <strong>{review.game.title}</strong>
-          <p>{review.content}</p>
-          <p>Rating: {review.rating}</p>
-        </Link>
-      ))}
-    </div>
+    <>
+      <h2 className={styles.title}>
+        {reviews.length > 0 ? "Reviews" : "No reviews yet"}
+      </h2>
+      <div className={styles.list}>
+        {reviews
+          .slice()
+          .reverse()
+          .map((review) => (
+            <FieldsetReview review={review} key={review.id} />
+          ))}
+      </div>
+    </>
   );
 };
-
-// fieldset

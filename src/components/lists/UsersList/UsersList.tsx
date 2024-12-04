@@ -2,6 +2,7 @@ import { useSuspenseQuery } from "@apollo/client";
 import { TUsersQuery } from "../../../types/types";
 import { GET_ALL_USERS } from "../../../apollo/query";
 import { UserCard } from "../../cards/UserCard/UserCard";
+import styles from './UserList.module.styl'
 
 
 export const UsersList = () => {
@@ -10,7 +11,7 @@ export const UsersList = () => {
   const { users } = dataAllUsers;
 
   return (
-    <section>
+    <section className={styles.list}>
       {users.map((user) => (
         <UserCard user={user} key={user.id} />
       ))}

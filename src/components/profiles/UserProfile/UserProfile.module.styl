@@ -1,0 +1,35 @@
+@import '../../../styles/index.styl';
+
+.profile
+  display flex
+  gap 20px
+  margin-bottom 20px
+
+  &User,
+  &Reviews 
+    flex: 1 1 50% 
+    max-width: 50% 
+    width: 100%  
+
+
+  &User
+    display flex
+    flex-direction column
+    align-items center
+    gap 20px
+
+    &Avatar
+      width 100%
+      aspect-ratio 1 / 1
+      border-radius 50%
+      overflow hidden
+
+      &Image
+        object-fit cover
+        width 100%
+        height auto
+    
+    &Name
+      font-size 30px
+      display flex
+      gap 10px

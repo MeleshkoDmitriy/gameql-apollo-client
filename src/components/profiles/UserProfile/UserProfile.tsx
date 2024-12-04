@@ -3,6 +3,8 @@ import { FC } from "react";
 import { TUserQuery } from "../../../types/types";
 import { GET_USER_BY_ID } from "../../../apollo/query";
 import { AccordionReview } from "../../reviews/AccordionReview/AccordionReview";
+import styles from "./UserProfile.module.styl";
+import { Verified } from "../../shared/Verified/Verified";
 
 interface UserProfileProps {
   id: string | undefined;
@@ -16,15 +18,22 @@ export const UserProfile: FC<UserProfileProps> = ({ id }) => {
   const { user } = dataUserById;
 
   return (
-    <div>
-      <img
-        src={user.avatar}
-        alt={user.username}
-        style={{ width: "200px", aspectRatio: "1 / 1", borderRadius: "50%" }}
-      />
-      <strong>{user.username}</strong>
-      <p>{user.isVerified === true ? 'true' : 'false' }</p>
-      <AccordionReview reviews={user.reviews} />
+    <div className={styles.profile}>
+      <div className={styles.profileUser}>
+        <div className={styles.profileUserAvatar}>
+          <img
+            className={styles.profileUserAvatarImage}
+            src={user.avatar}
+            alt={user.username}
+          />
+        </div>
+        <strong className={styles.profileUserName}>
+          {user.username} <Verified isVerified={user.isVerified} />
+        </strong>
+      </div>
+      <div className={styles.profileReviews}>
+        <AccordionReview reviews={user.reviews} />
+      </div>
     </div>
   );
 };

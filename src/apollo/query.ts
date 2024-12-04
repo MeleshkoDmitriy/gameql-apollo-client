@@ -31,6 +31,7 @@ export const GET_GAME_BY_ID = gql`
           id
           username
           avatar
+          isVerified
         }
       }
     }

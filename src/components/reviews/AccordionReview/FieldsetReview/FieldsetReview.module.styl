@@ -1,0 +1,25 @@
+@import '../../../../styles/index.styl';
+
+.wrapper 
+  width 100%
+  transition transitions.fast;
+  &:hover
+    transform translateY(-5px) 
+
+  &Fieldset
+    width 100%
+    margin 0
+    padding 10px 20px
+    display flex
+    flex-direction column
+    gap 10px
+    background-color colors.darkGrey
+    border-radius radiuses.medium;
+
+    &Legend
+      font-weight 700
+      font-size 20px
+
+
+    &Content
+      margin 0
