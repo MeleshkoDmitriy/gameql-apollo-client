@@ -1,10 +1,11 @@
 import { useSuspenseQuery } from "@apollo/client";
 import { FC } from "react";
-import { TUserQuery } from "../../../types/types";
+import {  TUserQuery } from "../../../types/types";
 import { GET_USER_BY_ID } from "../../../apollo/query";
 import { AccordionReview } from "../../reviews/AccordionReview/AccordionReview";
 import styles from "./UserProfile.module.styl";
 import { Verified } from "../../shared/Verified/Verified";
+import { LikesList } from "../../lists/LikesList/LikesList";
 
 interface UserProfileProps {
   id: string | undefined;
@@ -32,6 +33,7 @@ export const UserProfile: FC<UserProfileProps> = ({ id }) => {
         </strong>
       </div>
       <div className={styles.profileReviews}>
+        {id === "ADMIN" && <LikesList />}
         <AccordionReview reviews={user.reviews} />
       </div>
     </div>

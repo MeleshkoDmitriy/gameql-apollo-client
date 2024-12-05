@@ -1,0 +1,39 @@
+@import '../../../styles/index.styl';
+
+.card 
+  width 100%
+  aspect-ratio 1 / 1
+  border-radius radiuses.medium
+  border 2px solid colors.lightGrey;
+  overflow hidden
+  position relative
+  transition transitions.fast;
+
+  &:hover
+    transform translateY(-3px)
+    border-color colors.white;
+    .cardImage
+      transform scale(1.1)
+  
+  &Image
+    object-fit cover
+    width 100%
+    height auto
+    transition transitions.fast;
+  
+  &Title
+    padding-inline 5px
+    height 30px
+    backdrop-filter blur(5px)
+    border-radius radiuses.small
+    position absolute
+    bottom -2px
+    width 100%
+    display flex
+    justify-content center
+    align-items center
+
+    &Text
+      font-size 10px
+      color colors.white
+      text-align center

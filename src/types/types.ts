@@ -10,6 +10,11 @@ export type TGame = {
   reviews: TReview[];
 };
 
+export type TLikedGame = Pick<
+  TGame,
+  "id" | "title" | "image" | "isAdminLiked"
+>;
+
 export type TUser = {
   id: string;
   username: string;

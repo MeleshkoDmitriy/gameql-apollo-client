@@ -12,6 +12,17 @@ export const GET_ALL_GAMES = gql`
   }
 `;
 
+export const GET_LIKED_GAMES = gql`
+  query LikedGames {
+    likedGames {
+      id
+      title
+      image
+      isAdminLiked
+    }
+  }
+`;
+
 export const GET_GAME_BY_ID = gql`
   query Game($id: ID!) {
     game(id: $id) {
