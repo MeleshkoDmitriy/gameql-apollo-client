@@ -3,6 +3,7 @@ import { TUsersQuery } from "../../../types/types";
 import { GET_ALL_USERS } from "../../../apollo/query";
 import { UserCard } from "../../cards/UserCard/UserCard";
 import styles from './UserList.module.styl'
+import { useParams } from "react-router-dom";
 
 
 export const UsersList = () => {
@@ -10,10 +11,12 @@ export const UsersList = () => {
 
   const { users } = dataAllUsers;
 
+  const params = useParams();
+
   return (
     <section className={styles.list}>
       {users.map((user) => (
-        <UserCard user={user} key={user.id} />
+        <UserCard user={user} key={user.id} params={params} />
       ))}
     </section>
   );

@@ -1,19 +1,7 @@
 import { gql } from "@apollo/client";
 
-export const GET_ALL_GAMES = gql`
-  query Games {
-    games {
-      id
-      title
-      image
-      price
-      genres
-    }
-  }
-`;
-
 export const GET_LIKED_GAMES = gql`
-  query LikedGames {
+  query GetLikedGames {
     likedGames {
       id
       title
@@ -23,17 +11,31 @@ export const GET_LIKED_GAMES = gql`
   }
 `;
 
+export const GET_ALL_GAMES = gql`
+  query GetAllGames {
+    games {
+      id
+      title
+      image
+      price
+      genres
+      platforms
+      isAdminLiked
+    }
+  }
+`;
+
 export const GET_GAME_BY_ID = gql`
-  query Game($id: ID!) {
+  query GetGameById($id: ID!) {
     game(id: $id) {
       id
       title
       description
       price
       genres
+      platforms
       image
       isAdminLiked
-      platforms
       reviews {
         id
         content
@@ -50,21 +52,27 @@ export const GET_GAME_BY_ID = gql`
 `;
 
 export const GET_ALL_USERS = gql`
-  query Users {
+  query GetAllUsers {
     users {
       id
       username
       avatar
       isVerified
       reviews {
+        id
         content
+        rating
+        game {
+          id
+          title
+        }
       }
     }
   }
 `;
 
 export const GET_USER_BY_ID = gql`
-  query User($id: ID!) {
+  query GetUserById($id: ID!) {
     user(id: $id) {
       id
       username
@@ -87,7 +95,7 @@ export const GET_USER_BY_ID = gql`
 `;
 
 export const GET_ALL_REVIEWS = gql`
-  query Reviews {
+  query GetAllReviews {
     reviews {
       id
       content
@@ -99,7 +107,6 @@ export const GET_ALL_REVIEWS = gql`
         price
         genres
         platforms
-        isAdminLiked
       }
       user {
         id

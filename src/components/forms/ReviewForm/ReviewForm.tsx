@@ -15,20 +15,30 @@ export const ReviewForm: FC<ReviewFormProps> = ({ gameId, userId }) => {
   const [reviewContent, setReviewContent] = useState("");
   const [reviewRating, setReviewRating] = useState(1);
 
-  const [sendReview] = useMutation(ADD_REVIEW, {
+  const [sendReview, { loading }] = useMutation(ADD_REVIEW, {
     update(cache, { data: { addReview } }) {
+      console.log("Полученные данные от сервера:", addReview);
+
       const { game } = cache.readQuery<any>({
         query: GET_GAME_BY_ID,
         variables: { id: gameId },
-      });
+      }) || { game: { reviews: [] } };
 
       cache.writeQuery({
         query: GET_GAME_BY_ID,
         variables: { id: gameId },
-        data: { game: { ...game, reviews: [...game.reviews, addReview] } },
+        data: {
+          game: {
+            ...game,
+            reviews: [...game.reviews, addReview],
+          },
+        },
       });
     },
-    refetchQueries: [{ query: GET_USER_BY_ID, variables: { id: userId } }],
+    refetchQueries: [
+      { query: GET_USER_BY_ID, variables: { id: userId } },
+      // { query: GET_GAME_BY_ID, variables: { id: gameId } },
+    ],
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,10 +53,14 @@ export const ReviewForm: FC<ReviewFormProps> = ({ gameId, userId }) => {
           },
         },
       });
-      setReviewContent("");
-      setReviewRating(1);
+
+      alert("Your review has been added successfully!");
     } catch (error) {
       console.error("Error submitting review:", error);
+      alert("There was an issue submitting your review. Please try again.");
+    } finally {
+      setReviewContent("");
+      setReviewRating(1);
     }
   };
 
@@ -62,7 +76,7 @@ export const ReviewForm: FC<ReviewFormProps> = ({ gameId, userId }) => {
       <div className={styles.formGroup}>
         <RatingForm rating={reviewRating} onRatingChange={setReviewRating} />
         <button type="submit" className={styles.formGroupButton}>
-          Submit
+          {loading ? "Loading..." : "Submit"}
         </button>
       </div>
     </form>
